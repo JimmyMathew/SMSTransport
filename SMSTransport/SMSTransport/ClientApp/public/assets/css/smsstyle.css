@@ -1,0 +1,26 @@
+﻿.ReactTable .rt-th {
+    background: #272c33;
+    color: #fff;
+}
+.button-gap {
+    margin-left: 8px;
+}
+.right-panel {
+    padding-left: 11px !important;
+}
+.hide-control {
+    display: none;
+}
+.rt-th input {
+height:22px;
+}
+.heading-line {
+    margin-left: -2px;
+    margin-right: -819px;
+    margin-top: 6px;
+}
+.heading {
+    font-size: 30px;
+    margin-top: 5px;
+    margin-left: -5px;
+}

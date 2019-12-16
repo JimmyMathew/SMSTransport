@@ -1,0 +1,115 @@
+Vehicle details Entry
+Sno
+Date
+Vehicle Type
+Vehicle No
+Driver 
+Mode -  Sales/Purchase  
+Party name 
+Load from 
+Load to 
+Starting KM 
+Closing KM 
+Expense KM(Closing - Starting )
+
+Rent details - Cash/Credit 
+	Total - ()  
+
+
+
+Daily Expense entry 
+SNo 
+Date 
+Name
+Vehicle Type 
+Vehicle No
+Daily expense 
+	Driver Bata 
+	Toll 
+	Pass 
+	Fuel Litre rate and Litre (Multiply and bring the total amount)
+	Total ()
+	
+Other Expenses Entry 
+PC 
+RDO
+RTO	
+
+	Total()
+
+RTO Expenses Entry 
+SNO 
+Date 
+Vehicle Type 
+Vehicle No 
+Tax 
+Insurance
+FC
+
+	Total()
+
+Mechanical Expenses Entry 
+Sno 
+Date 
+Vehicle Type 
+Vehicle No
+Description -> TextArea
+Mechanic Labor 
+Electrical labor 
+Body Work 
+Oil/Grease change 
+
+	Total Expense ()
+
+Tire Details 
+Sno
+Date 
+Vehicle Type 
+Vehicle No 
+Type -> Original/ Retired 
+Side -> Front/ back / Middle 
+Company Name 
+Starting Kms
+Closing Kms
+
+ 
+Mater 
+Vehicle Master 
+Vehicle No 
+Vehicle type 
+
+
+Party Master 
+Party Name 
+
+Driver Master 
+Driver name 
+
+
+Simple Login 
+
+
+
+Reports - 1 (Sales Report)
+Report -> Select a vehicle number 
+Date -> From and to date 
+Individual Total 
+total() 
+All vehicles provision should be there 
+
+Report -2 (Expense report)
+Select a vehicle number 
+All vehicles provision should be there. 
+Date -> from To 
+
+Daily Expense, Mechanical Expense, Other expenses, RTO Expenses, Tire Details 
+Toal ()
+
+
+
+
+
+
+
+
+
