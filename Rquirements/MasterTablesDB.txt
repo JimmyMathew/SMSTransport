@@ -1,0 +1,37 @@
+Party Master 
+------------
+partyid
+partytype
+partyname
+mobile
+telephone
+address
+email
+pancard
+gstin
+createdby
+createdon
+updatedby
+updatedon
+
+Vehicle Mater
+-------------
+veicleid
+vehicletype
+vehicleno
+createdby
+createdon
+updatedby
+updatedon
+
+Driver Master
+-------------
+driverid
+drivername
+mobile
+address
+createdby
+createdon
+updatedby
+updatedon
+

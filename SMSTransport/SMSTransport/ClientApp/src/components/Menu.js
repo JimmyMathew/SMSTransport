@@ -22,6 +22,16 @@ export class Menu extends Component {
                             <li className="active">
                                 <a href="/dashboard"> <i className="menu-icon fa fa-dashboard"></i>Dashboard </a>
                             </li>
+                            
+                            <li className="menu-item-has-children dropdown">
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-laptop"></i>Master</a>
+                                <ul className="sub-menu children dropdown-menu">
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/driver">Drivers</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/partie">Parties</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/vehicle">Vehicles</a></li>
+                                </ul>
+                            </li>
+
                             <h3 className="menu-title">UI elements</h3>
                             <li className="menu-item-has-children dropdown">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-laptop"></i>Components</a>
