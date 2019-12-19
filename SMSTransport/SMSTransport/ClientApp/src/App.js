@@ -5,6 +5,8 @@ import { Dashboard } from './components/Dashboard';
 import { FetchData } from './components/FetchData';
 import { Driver } from './components/Driver';
 import 'react-notifications/lib/notifications.css';
+import { Vehicle } from './components/Vehicle';
+import { Party } from './components/Party';
 
 
 export default class App extends Component {
@@ -17,6 +19,8 @@ export default class App extends Component {
                     <Route path='/dashboard' component={Dashboard} />
                     <Route path='/fetchdata' component={FetchData} />
                     <Route path='/driver' component={Driver} />
+                    <Route path='/vehicle' component={Vehicle} />
+                    <Route path='/party' component={Party} />
                 </Switch>
 
             </React.Fragment>

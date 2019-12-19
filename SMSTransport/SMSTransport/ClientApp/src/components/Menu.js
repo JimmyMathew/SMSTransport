@@ -27,7 +27,7 @@ export class Menu extends Component {
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-laptop"></i>Master</a>
                                 <ul className="sub-menu children dropdown-menu">
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/driver">Drivers</a></li>
-                                    <li><i className="fa fa-puzzle-piece"></i><a href="/partie">Parties</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/party">Parties</a></li>
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/vehicle">Vehicles</a></li>
                                 </ul>
                             </li>

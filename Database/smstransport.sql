@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2019 at 08:12 PM
+-- Generation Time: Dec 19, 2019 at 07:44 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,6 +69,13 @@ CREATE TABLE `party` (
   `updatedon` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `party`
+--
+
+INSERT INTO `party` (`partyid`, `partytype`, `partyname`, `mobile`, `telephone`, `address`, `email`, `pancard`, `gstin`, `createdby`, `createdon`, `updatedby`, `updatedon`) VALUES
+(1, 'testtyp', 'ji', 984044013, 12, 'testaddres', 'testemnai', 'bnv56', 'hyuy67', 'Admin', '2019-12-20 00:00:00', 'Admin', '2019-12-20 00:11:03');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +115,15 @@ CREATE TABLE `vehicle` (
   `updatedby` varchar(50) DEFAULT NULL,
   `updatedon` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+INSERT INTO `vehicle` (`veicleid`, `vehicletype`, `vehicleno`, `createdby`, `createdon`, `updatedby`, `updatedon`) VALUES
+(1, 'Truck', 'tn05az1877', 'Admin', '2019-12-19 00:00:00', 'Admin', '2019-12-19 23:21:52'),
+(3, 'Car', 'Test123', 'Admin', '2019-12-19 23:22:01', 'Admin', '2019-12-19 23:22:01'),
+(4, 'Truck', 'test456', 'Admin', '2019-12-19 23:22:16', 'Admin', '2019-12-19 23:22:16');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +167,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
-  MODIFY `partyid` bigint(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `partyid` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -163,7 +179,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `veicleid` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `veicleid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
