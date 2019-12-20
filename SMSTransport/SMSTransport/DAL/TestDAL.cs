@@ -72,7 +72,7 @@ namespace SMSTransport.DAL
                 }
                 catch (Exception e)
                 {
-                    return new Response { IsSuccess = false, Message = "Deletion Error: "+ e.Message };
+                    return new Response { IsSuccess = false, Message = "Deletion Error: " + e.Message };
 
                 }
                 return new Response { IsSuccess = true, Message = "Data deleted successfully" };

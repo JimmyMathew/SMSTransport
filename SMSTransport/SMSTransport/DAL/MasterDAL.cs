@@ -73,7 +73,7 @@ namespace SMSTransport.DAL
                 }
                 catch (Exception e)
                 {
-                    return new Response { IsSuccess = false, Message = "Deletion Error: "+ e.Message };
+                    return new Response { IsSuccess = false, Message = "Deletion Error: " + e.Message };
 
                 }
                 return new Response { IsSuccess = true, Message = "Driver details deleted successfully" };
@@ -88,9 +88,9 @@ namespace SMSTransport.DAL
         {
             return entities.Vehicle.Select(x => new VehicleVM
             {
-               Veicleid = x.Veicleid,
-               Vehicletype = x.Vehicletype,
-               Vehicleno = x.Vehicleno
+                Veicleid = x.Veicleid,
+                Vehicletype = x.Vehicletype,
+                Vehicleno = x.Vehicleno
             }).OrderByDescending(x => x.Veicleid).ToList();
         }
         public Response SaveVehicle(VehicleVM obj)

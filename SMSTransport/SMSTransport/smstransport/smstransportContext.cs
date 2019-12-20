@@ -15,6 +15,7 @@ namespace SMSTransport.smstransport
         {
         }
 
+        public virtual DbSet<Dailyexpenses> Dailyexpenses { get; set; }
         public virtual DbSet<Driver> Driver { get; set; }
         public virtual DbSet<Party> Party { get; set; }
         public virtual DbSet<Test> Test { get; set; }
@@ -31,6 +32,62 @@ namespace SMSTransport.smstransport
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Dailyexpenses>(entity =>
+            {
+                entity.ToTable("dailyexpenses", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Driverbata)
+                    .HasColumnName("driverbata")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Fuellitre)
+                    .HasColumnName("fuellitre")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Fuelrate)
+                    .HasColumnName("fuelrate")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Pass)
+                    .HasColumnName("pass")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Toll)
+                    .HasColumnName("toll")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Total)
+                    .HasColumnName("total")
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Vehicleno)
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("NULL");
+
+                entity.Property(e => e.Vehicletype)
+                    .HasColumnName("vehicletype")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("NULL");
+            });
+
             modelBuilder.Entity<Driver>(entity =>
             {
                 entity.ToTable("driver", "smstransport");

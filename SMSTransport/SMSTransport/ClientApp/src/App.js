@@ -7,6 +7,7 @@ import { Driver } from './components/Driver';
 import 'react-notifications/lib/notifications.css';
 import { Vehicle } from './components/Vehicle';
 import { Party } from './components/Party';
+import { Daily } from './components/Daily';
 
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
                     <Route path='/driver' component={Driver} />
                     <Route path='/vehicle' component={Vehicle} />
                     <Route path='/party' component={Party} />
+                    <Route path='/daily' component={Daily} />
                 </Switch>
 
             </React.Fragment>
