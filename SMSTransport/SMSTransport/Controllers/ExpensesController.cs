@@ -13,13 +13,22 @@ namespace SMSTransport.Controllers
     public class ExpensesController : Controller
     {
         ExpenseDAL expDal = new ExpenseDAL();
+        MasterDAL masterDal = new MasterDAL();
 
         #region DailyExpenses
         [HttpGet("[action]")]
         public JsonResult ReadDaily()
         {
-
-            return Json(expDal.ReadDaily());
+            List<object> resultList = new List<object>();
+            resultList.Add(expDal.ReadDaily());
+            resultList.Add(masterDal.ReadVehicleTypes());
+            return Json(resultList);
+        }
+        [HttpPost("[action]")]
+        public JsonResult ReadVehiclesOnType([FromBody] JObject data)
+        {
+            DailyVM dailyObj = data.ToObject<DailyVM>();
+            return Json(masterDal.ReadVehcilesOnType(dailyObj.Vehicletype));
         }
         [HttpPost("[action]")]
         public JsonResult SaveDaily([FromBody] JObject data)

@@ -93,6 +93,22 @@ namespace SMSTransport.DAL
                 Vehicleno = x.Vehicleno
             }).OrderByDescending(x => x.Veicleid).ToList();
         }
+        public List<SelectResponse> ReadVehicleTypes()
+        {
+            return entities.Vehicle.Select(x => new SelectResponse
+            {
+                Text = x.Vehicletype,
+                Value = x.Vehicletype
+            }).Distinct().OrderBy(x => x.Value).ToList();
+        }
+        public List<SelectResponse> ReadVehcilesOnType(string vehicleType)
+        {
+            return entities.Vehicle.Where(item=>item.Vehicletype.Equals(vehicleType)).Select(x => new SelectResponse
+            {
+                Text = x.Vehicleno,
+                Value = x.Vehicleno
+            }).OrderBy(x => x.Value).ToList();
+        }
         public Response SaveVehicle(VehicleVM obj)
         {
             var IsExist = entities.Vehicle.Where(x => x.Vehicleno == obj.Vehicleno).ToList();

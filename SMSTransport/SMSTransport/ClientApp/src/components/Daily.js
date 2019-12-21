@@ -11,11 +11,12 @@ export class Daily extends Component {
         super(props);
         this.Save = this.Save.bind(this);
         this.state = {
-            daily: [], loading: true, editData: { id: 0, date: "", name: "", vehicletype: "", vehicleno: "", driverbata: "", toll: "", pass: "", fuelrate: "", fuellitre: "", total: "" }};
+            daily: [], vehicleTypeOptions:[],vehicleNumbers:[], loading: true, editData: { id: 0, date: "", name: "", vehicletype: "", vehicleno: "", driverbata: "", toll: "", pass: "", fuelrate: "", fuellitre: "", total: "" }};
 
         service.Get('api/Expenses/ReadDaily')
             .then(response => {
-                this.setState({ daily: response.data, loading: false });
+                this.setState({ daily: response.data[0], vehicleTypeOptions: response.data[1], loading: false, });
+                
             })
             .catch((error) => {
                 console.log("Error Log:");
@@ -134,6 +135,7 @@ export class Daily extends Component {
                                                 name="date"
                                                 className="form-control"
                                                 onChange={this.HandleChange}
+                                                disabled
                                             />
                                         </div>
                                         <div className="col-md-2"><label for="text-input" className=" form-control-label">Name</label></div>
@@ -150,12 +152,21 @@ export class Daily extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-2"><label for="text-input" className=" form-control-label">Vehicle Type</label></div>
                                         <div className="col-md-4">
-                                            <input type="text"
+                                            <select
                                                 value={this.state.editData.vehicletype}
                                                 name="vehicletype"
                                                 className="form-control"
-                                                onChange={this.HandleChange}
-                                            />
+                                                //onChange={this.HandleChange}
+                                                onChange={this.HandleVehicleTypeChange}>
+                                                <option value="">Select...</option>
+                                                {this.state.vehicleTypeOptions.map((data, key) => {
+                                                    return (
+                                                        <option key={data.key} value={data.key}>
+                                                            {data.value}
+                                                        </option>
+                                                    );
+                                                })}
+                                            </select>
                                         </div>
                                         <div className="col-md-2"><label for="text-input" className=" form-control-label">Vehicle No</label></div>
                                         <div className="col-md-4">
@@ -164,7 +175,17 @@ export class Daily extends Component {
                                                 name="vehicleno"
                                                 className="form-control"
                                                 onChange={this.HandleChange}
+                                                list="vehicleNumberList"
                                             />
+                                            <datalist id="vehicleNumberList">
+                                                {this.state.vehicleNumbers.map((data, key) => {
+                                                    return (
+                                                        <option key={data.key} value={data.key}>
+                                                            {data.value}
+                                                        </option>
+                                                    );
+                                                })}
+                                            </datalist>
                                         </div>
                                     </div>
                                     <br />
@@ -266,7 +287,34 @@ export class Daily extends Component {
         editData[targetName] = event.target.type == "number" ? parseInt(event.target.value) : event.target.value;
         this.setState({ editData });
     }
-    AddModal = () => this.setState({ editData: { id: 0, date: "", name: "", vehicletype: "", vehicleno: "", driverbata: "", toll: "", pass: "", fuelrate: "", fuellitre: "", total: "" }});
+    HandleVehicleTypeChange = (event) => {
+        let editData = { ...this.state.editData };
+        editData["vehicletype"] = event.target.value;
+        let data = { vehicletype: event.target.value };
+        service.Post('api/Expenses/ReadVehiclesOnType', data)
+            .then(response => {
+                editData["vehicleno"] = "";
+                    this.setState({ vehicleNumbers: response.data, editData });
+               
+            })
+            .catch((error) => {
+                console.log("Error Log:");
+                console.log("----------");
+                console.log(error.response.data);
+                console.log("----------");
+                notification.createNotification(error.response.data.errorHeading, 'error');
+
+            });
+    }
+    AddModal = () => {
+        let fullDate = new Date();
+        let twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : (fullDate.getMonth() + 1);
+        let hours = fullDate.getHours();
+        let minutes = fullDate.getMinutes();
+        //let ampm = (hours >= 12) ? "PM" : "AM";
+        let currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear() + " " + hours + ":" + minutes;
+        this.setState({ vehicleNumbers: [], editData: { id: 0, date: currentDate, name: "", vehicletype: "", vehicleno: "", driverbata: "", toll: "", pass: "", fuelrate: "", fuellitre: "", total: "" } });
+    }
     EditModal = (dataObj) => this.setState({ editData: { id: dataObj.id, date: dataObj.date, name: dataObj.name, vehicletype: dataObj.vehicletype, vehicleno: dataObj.vehicleno, driverbata: dataObj.driverbata, toll: dataObj.toll, pass: dataObj.pass, fuelrate: dataObj.fuelrate, fuellitre: dataObj.fuellitre, total: dataObj.total }});
     Save() {
         let id = this.state.editData.id == null ? 0 : this.state.editData.id;
@@ -297,7 +345,7 @@ export class Daily extends Component {
             .then(response => {
                 if (response.status == 200) {
                     if (response.data[0].isSuccess) {
-                        this.setState({ daily: response.data[1].value, loading: false });
+                        this.setState({ daily: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
                         this.refs.modalClose.click();
                     }
                     notification.createNotification(response.data[0].message, 'info');
@@ -322,7 +370,7 @@ export class Daily extends Component {
             .then(response => {
                 if (response.status == 200) {
                     if (response.data[0].isSuccess) {
-                        this.setState({ daily: response.data[1].value, loading: false });
+                        this.setState({ daily: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
                     }
                     notification.createNotification(response.data[0].message, 'info');
                 }
