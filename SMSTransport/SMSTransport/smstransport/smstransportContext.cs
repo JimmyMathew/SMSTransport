@@ -17,7 +17,10 @@ namespace SMSTransport.smstransport
 
         public virtual DbSet<Dailyexpenses> Dailyexpenses { get; set; }
         public virtual DbSet<Driver> Driver { get; set; }
+        public virtual DbSet<Mechanicexpenses> Mechanicexpenses { get; set; }
+        public virtual DbSet<Miscexpenses> Miscexpenses { get; set; }
         public virtual DbSet<Party> Party { get; set; }
+        public virtual DbSet<Rtoexpenses> Rtoexpenses { get; set; }
         public virtual DbSet<Test> Test { get; set; }
         public virtual DbSet<Vehicle> Vehicle { get; set; }
 
@@ -134,6 +137,84 @@ namespace SMSTransport.smstransport
                     .HasDefaultValueSql("NULL");
             });
 
+            modelBuilder.Entity<Mechanicexpenses>(entity =>
+            {
+                entity.ToTable("mechanicexpenses", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Bodywork)
+                    .HasColumnName("bodywork")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasColumnName("description")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Electriclabor).HasColumnName("electriclabor");
+
+                entity.Property(e => e.Mechaniclobor).HasColumnName("mechaniclobor");
+
+                entity.Property(e => e.Oilchange).HasColumnName("oilchange");
+
+                entity.Property(e => e.Total).HasColumnName("total");
+
+                entity.Property(e => e.Vehicleno)
+                    .IsRequired()
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicletype)
+                    .IsRequired()
+                    .HasColumnName("vehicletype")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Miscexpenses>(entity =>
+            {
+                entity.ToTable("miscexpenses", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pc).HasColumnName("pc");
+
+                entity.Property(e => e.Rdo).HasColumnName("rdo");
+
+                entity.Property(e => e.Rto).HasColumnName("rto");
+
+                entity.Property(e => e.Total).HasColumnName("total");
+
+                entity.Property(e => e.Vehicleno)
+                    .IsRequired()
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicletype)
+                    .IsRequired()
+                    .HasColumnName("vehicletype")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Party>(entity =>
             {
                 entity.ToTable("party", "smstransport");
@@ -207,6 +288,40 @@ namespace SMSTransport.smstransport
                 entity.Property(e => e.Updatedon)
                     .HasColumnName("updatedon")
                     .HasDefaultValueSql("NULL");
+            });
+
+            modelBuilder.Entity<Rtoexpenses>(entity =>
+            {
+                entity.ToTable("rtoexpenses", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fc).HasColumnName("fc");
+
+                entity.Property(e => e.Insurance).HasColumnName("insurance");
+
+                entity.Property(e => e.Tax).HasColumnName("tax");
+
+                entity.Property(e => e.Total).HasColumnName("total");
+
+                entity.Property(e => e.Vehicleno)
+                    .IsRequired()
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicletype)
+                    .IsRequired()
+                    .HasColumnName("vehicletype")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Test>(entity =>

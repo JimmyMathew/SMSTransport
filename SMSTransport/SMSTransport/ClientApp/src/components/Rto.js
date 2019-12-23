@@ -5,17 +5,17 @@ import Download from './ExcelExport';
 const service = require('../Utils/service.js');
 const notification = require('../Utils/notification.js');
 
-export class Daily extends Component {
+export class Rto extends Component {
     constructor(props) {
         
         super(props);
         this.Save = this.Save.bind(this);
         this.state = {
-            daily: [], vehicleTypeOptions:[],vehicleNumbers:[], loading: true, editData: { id: 0, date: "", name: "", vehicletype: "", vehicleno: "", driverbata: 0, toll: 0, pass: 0, fuelrate: 0, fuellitre: 0, total: 0 }};
+            rto: [], vehicleTypeOptions:[],vehicleNumbers:[], loading: true, editData: { id: 0, date: "", vehicletype: "", vehicleno: "", tax: 0, insurance: 0, fc: 0,total: 0 }};
 
-        service.Get('api/Expenses/ReadDaily')
+        service.Get('api/Expenses/ReadRto')
             .then(response => {
-                this.setState({ daily: response.data[0], vehicleTypeOptions: response.data[1], loading: false, });
+                this.setState({ rto: response.data[0], vehicleTypeOptions: response.data[1], loading: false, });
                 
             })
             .catch((error) => {
@@ -37,7 +37,7 @@ export class Daily extends Component {
                 Header: 'Action',
                 Cell: row => (
                     <div>
-                        <button className="btn btn-info btn-sm" data-toggle="modal" data-target="#dailyModal" onClick={() => this.EditModal(row.original)}><i class="fa fa-pencil-square fa-xs" aria-hidden="true"></i></button>
+                        <button className="btn btn-info btn-sm" data-toggle="modal" data-target="#rtoModal" onClick={() => this.EditModal(row.original)}><i class="fa fa-pencil-square fa-xs" aria-hidden="true"></i></button>
                         <button className="btn btn-danger button-gap btn-sm" onClick={() => this.Delete(row.original)}><i class="fa fa-trash fa-xs"></i></button>
                     </div>
                 ),
@@ -59,12 +59,6 @@ export class Daily extends Component {
                 width: 200
             },
             {
-                Header: 'Name',
-                accessor: 'name',
-                width: 200
-            },
-
-            {
                 Header: 'Vehicle Type',
                 accessor: 'vehicletype',
                 width: 200
@@ -75,28 +69,18 @@ export class Daily extends Component {
                 width: 200
             },
             {
-                Header: 'Driver Bata',
-                accessor: 'driverbata',
+                Header: 'Tax',
+                accessor: 'tax',
                 width: 120
             },
             {
-                Header: 'Toll',
-                accessor: 'toll',
+                Header: 'Insurance',
+                accessor: 'insurance',
                 width: 120
             },
             {
-                Header: 'Pass',
-                accessor: 'pass',
-                width: 120
-            },
-            {
-                Header: 'Fuel Rate',
-                accessor: 'fuelrate',
-                width: 120
-            },
-            {
-                Header: 'Fuel Litre',
-                accessor: 'fuellitre',
+                Header: 'FC',
+                accessor: 'fc',
                 width: 120
             },
             {
@@ -107,22 +91,22 @@ export class Daily extends Component {
         ]
         let mainView = this.state.loading
             ? <p><em>Loading...</em></p>
-            : <RenderTable data={this.state.daily} columns={tableColumns} />;
+            : <RenderTable data={this.state.rto} columns={tableColumns} />;
 
         return (
            
             <div id="right-panel" className="right-panel">
                 <NotificationContainer />
-                <span className="heading">Daily Expenses</span>
+                <span className="heading">RTO Expenses</span>
                 <hr className="heading-line"/>
-                <button className="btn btn-info btn-sm" data-toggle="modal" data-target="#dailyModal" onClick={() => this.AddModal()}>Add</button>
-                <Download data={this.state.daily} /><br /><br />
+                <button className="btn btn-info btn-sm" data-toggle="modal" data-target="#rtoModal" onClick={() => this.AddModal()}>Add</button>
+                <Download data={this.state.rto} /><br /><br />
                 {mainView}
-                <div className="modal" id="dailyModal">
+                <div className="modal" id="rtoModal">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h4 className="modal-title">Daily Expenses</h4>
+                                <h4 className="modal-title">RTO Expenses</h4>
                                 <button type="button" className="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div className="modal-body">
@@ -136,15 +120,6 @@ export class Daily extends Component {
                                                 className="form-control"
                                                 onChange={this.HandleChange}
                                                 disabled
-                                            />
-                                        </div>
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Name</label></div>
-                                        <div className="col-md-4">
-                                            <input type="text"
-                                                value={this.state.editData.name}
-                                                name="name"
-                                                className="form-control"
-                                                onChange={this.HandleChange}
                                             />
                                         </div>
                                     </div>
@@ -189,23 +164,23 @@ export class Daily extends Component {
                                     </div>
                                     <br />
                                     <div className="row form-group">
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Driver Bata</label></div>
+                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Tax</label></div>
                                         <div className="col-md-4">
                                             <input type="number"
                                                 step="any"
-                                                value={this.state.editData.driverbata}
-                                                name="driverbata"
+                                                value={this.state.editData.tax}
+                                                name="tax"
                                                 className="form-control"
                                                 onChange={this.HandleChange}
                                         
                                     />
                                         </div>
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Toll</label></div>
+                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Insurance</label></div>
                                         <div className="col-md-4">
                                             <input type="number"
                                                 step="any"
-                                                value={this.state.editData.toll}
-                                                name="toll"
+                                                value={this.state.editData.insurance}
+                                                name="insurance"
                                                 className="form-control"
                                                 onChange={this.HandleChange}
                                             />
@@ -213,35 +188,12 @@ export class Daily extends Component {
                                     </div>
                                     <br />
                                     <div className="row form-group">
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Pass</label></div>
+                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">FC</label></div>
                                         <div className="col-md-4">
                                             <input type="number"
                                                 step="any"
-                                                value={this.state.editData.pass}
-                                                name="pass"
-                                                className="form-control"
-                                                onChange={this.HandleChange}
-                                            />
-                                        </div>
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Fuel Rate</label></div>
-                                        <div className="col-md-4">
-                                            <input type="number"
-                                                step="any"
-                                                value={this.state.editData.fuelrate}
-                                                name="fuelrate"
-                                                className="form-control"
-                                                onChange={this.HandleChange}
-                                            />
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div className="row form-group">
-                                        <div className="col-md-2"><label for="text-input" className=" form-control-label">Fuel Litre</label></div>
-                                        <div className="col-md-4">
-                                            <input type="number"
-                                                step="any"
-                                                value={this.state.editData.fuellitre}
-                                                name="fuellitre"
+                                                value={this.state.editData.fc}
+                                                name="fc"
                                                 className="form-control"
                                                 onChange={this.HandleChange}
                                             />
@@ -252,20 +204,19 @@ export class Daily extends Component {
                                                 step="any"
                                                 value={
                                                     this.state.editData.total =
-                                                    (isNaN(this.state.editData.driverbata) ? 0 : parseFloat(this.state.editData.driverbata)) +
-                                                    (isNaN(this.state.editData.toll) ? 0 : parseFloat(this.state.editData.toll)) +
-                                                    (isNaN(this.state.editData.pass) ? 0 : parseFloat(this.state.editData.pass)) +
-                                                    ((isNaN(this.state.editData.fuelrate) ? 0 : parseFloat(this.state.editData.fuelrate)) *
-                                                    (isNaN(this.state.editData.fuellitre) ? 0 : parseFloat(this.state.editData.fuellitre)))
+                                                    (isNaN(this.state.editData.tax) ? 0 : parseFloat(this.state.editData.tax)) +
+                                                    (isNaN(this.state.editData.insurance) ? 0 : parseFloat(this.state.editData.insurance)) +
+                                                    (isNaN(this.state.editData.fc) ? 0 : parseFloat(this.state.editData.fc)) 
                                                 }
-                                       name="total"
-                                       className="form-control"
+                                                name="total"
+                                                className="form-control"
                                                 onChange={this.HandleChange}
                                                 disabled
                                             />
                                         </div>
                                     </div>
                                     <br />
+                                   
                                     <div className="row form-group">
                                         <div className="col-md-4"></div>
                                         <div className="col-md-6">
@@ -327,20 +278,17 @@ export class Daily extends Component {
         let minutes = fullDate.getMinutes();
         //let ampm = (hours >= 12) ? "PM" : "AM";
         let currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear() + " " + hours + ":" + minutes;
-        this.setState({ vehicleNumbers: [], editData: { id: 0, date: currentDate, name: "", vehicletype: "", vehicleno: "", driverbata: 0, toll: 0, pass: 0, fuelrate: 0, fuellitre: 0, total: 0 } });
+        this.setState({ vehicleNumbers: [], editData: { id: 0, date: "", vehicletype: "", vehicleno: "", tax: 0, insurance: 0, fc: 0, total: 0 } });
     }
-    EditModal = (dataObj) => this.setState({ editData: { id: dataObj.id, date: dataObj.date, name: dataObj.name, vehicletype: dataObj.vehicletype, vehicleno: dataObj.vehicleno, driverbata: dataObj.driverbata, toll: dataObj.toll, pass: dataObj.pass, fuelrate: dataObj.fuelrate, fuellitre: dataObj.fuellitre, total: dataObj.total }});
+    EditModal = (dataObj) => this.setState({ editData: { id: dataObj.id, date: dataObj.date, vehicletype: dataObj.vehicletype, vehicleno: dataObj.vehicleno, tax: dataObj.tax, insurance: dataObj.insurance, fc: dataObj.fc, total: dataObj.total }});
     Save() {
         let id = this.state.editData.id == null ? 0 : this.state.editData.id;
         let date = this.state.editData.date;
-        let name = this.state.editData.name;
         let vehicletype = this.state.editData.vehicletype;
         let vehicleno = this.state.editData.vehicleno;
-        let driverbata = this.state.editData.driverbata;
-        let toll = this.state.editData.toll;
-        let pass = this.state.editData.pass;
-        let fuelrate = this.state.editData.fuelrate;
-        let fuellitre = this.state.editData.fuellitre;
+        let tax = this.state.editData.tax;
+        let insurance = this.state.editData.insurance;
+        let fc = this.state.editData.fc;
         let total = this.state.editData.total;
 
         //Validations
@@ -354,12 +302,12 @@ export class Daily extends Component {
         }
         //Save Logic
         else {
-            let data = { id: id, date: date, name: name, vehicletype: vehicletype, vehicleno: vehicleno, driverbata: parseFloat(driverbata), toll: parseFloat(toll), pass: parseFloat(pass), fuelrate: parseFloat(fuelrate), fuellitre: parseFloat(fuellitre), total: parseFloat(total) };
-        service.Post('api/Expenses/SaveDaily', data)
+            let data = { id: id, date: date, vehicletype: vehicletype, vehicleno: vehicleno, tax: parseFloat(tax), insurance: parseFloat(insurance), fc: parseFloat(fc), total: parseFloat(total) };
+        service.Post('api/Expenses/SaveRto', data)
             .then(response => {
                 if (response.status == 200) {
                     if (response.data[0].isSuccess) {
-                        this.setState({ daily: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
+                        this.setState({ rto: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
                         this.refs.modalClose.click();
                     }
                     notification.createNotification(response.data[0].message, 'info');
@@ -380,11 +328,11 @@ export class Daily extends Component {
     };
     Delete = (dataObj) => {
         let data = { id: parseInt(dataObj.id) };
-        service.Post('api/Expenses/DeleteDaily', data)
+        service.Post('api/Expenses/DeleteRto', data)
             .then(response => {
                 if (response.status == 200) {
                     if (response.data[0].isSuccess) {
-                        this.setState({ daily: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
+                        this.setState({ rto: response.data[1].value[0], vehicletype: response.data[1].value[1], loading: false });
                     }
                     notification.createNotification(response.data[0].message, 'info');
                 }

@@ -35,8 +35,9 @@ export class Menu extends Component {
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-laptop"></i>Expenses</a>
                                 <ul className="sub-menu children dropdown-menu">
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/daily">Daily Expenses</a></li>
-                                    <li><i className="fa fa-puzzle-piece"></i><a href="/party">Parties</a></li>
-                                    <li><i className="fa fa-puzzle-piece"></i><a href="/vehicle">Vehicles</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/rto">RTO Expenses</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/mechanic">Mechanic Expenses</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/misc">Miscellaneous Expenses</a></li>
                                 </ul>
                             </li>
 

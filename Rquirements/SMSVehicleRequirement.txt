@@ -73,7 +73,7 @@ Starting Kms
 Closing Kms
 
  
-Mater 
+Master 
 Vehicle Master 
 Vehicle No 
 Vehicle type 

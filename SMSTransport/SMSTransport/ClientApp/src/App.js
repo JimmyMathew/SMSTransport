@@ -8,6 +8,9 @@ import 'react-notifications/lib/notifications.css';
 import { Vehicle } from './components/Vehicle';
 import { Party } from './components/Party';
 import { Daily } from './components/Daily';
+import { Rto } from './components/Rto';
+import { Mechanic } from './components/Mechanic';
+import { Misc } from './components/Misc';
 
 
 export default class App extends Component {
@@ -23,6 +26,9 @@ export default class App extends Component {
                     <Route path='/vehicle' component={Vehicle} />
                     <Route path='/party' component={Party} />
                     <Route path='/daily' component={Daily} />
+                    <Route path='/rto' component={Rto} />
+                    <Route path='/mechanic' component={Mechanic} />
+                    <Route path='/misc' component={Misc} />
                 </Switch>
 
             </React.Fragment>

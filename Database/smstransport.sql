@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2019 at 07:44 PM
+-- Generation Time: Dec 23, 2019 at 11:05 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -21,6 +21,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `smstransport`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dailyexpenses`
+--
+
+CREATE TABLE `dailyexpenses` (
+  `id` bigint(20) NOT NULL,
+  `date` text DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `vehicletype` varchar(50) DEFAULT NULL,
+  `vehicleno` varchar(50) DEFAULT NULL,
+  `driverbata` float DEFAULT NULL,
+  `toll` float DEFAULT NULL,
+  `pass` float DEFAULT NULL,
+  `fuelrate` float DEFAULT NULL,
+  `fuellitre` float DEFAULT NULL,
+  `total` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dailyexpenses`
+--
+
+INSERT INTO `dailyexpenses` (`id`, `date`, `name`, `vehicletype`, `vehicleno`, `driverbata`, `toll`, `pass`, `fuelrate`, `fuellitre`, `total`) VALUES
+(1, '2019-12-20', 'test', 'Truck', 'tn05al123', 34, 243, 432, 43, 43, 34),
+(4, 'fds', 'fd', 'Car', 'fds', 5, 54, 54, 54, 5, 4),
+(6, '54', '543', 'Car', 'Test123', 543, 3, 432, 232, 32, 23),
+(7, '21/12/2019 16:22', 'vfgd', 'Car', 'TN10AZ1877', 10, 10, 10, 2, 10, 50),
+(8, '21/12/2019 16:33', 'test', 'Truck', 'TN08BL1234', 123.78, 487.89, 88.56, 89767, 789.345, 70857800),
+(9, '23/12/2019 11:42', '', 'Car', 'TN10AZ1877', 1.15, 1.15, 2.25, 1.5, 2.75, 8.675);
 
 -- --------------------------------------------------------
 
@@ -50,6 +82,57 @@ INSERT INTO `driver` (`driverid`, `drivername`, `mobile`, `address`, `createdby`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mechanicexpenses`
+--
+
+CREATE TABLE `mechanicexpenses` (
+  `id` bigint(20) NOT NULL,
+  `date` text NOT NULL,
+  `vehicletype` varchar(100) NOT NULL,
+  `vehicleno` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `mechaniclobor` float NOT NULL,
+  `electriclabor` float NOT NULL,
+  `bodywork` int(11) NOT NULL,
+  `oilchange` float NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mechanicexpenses`
+--
+
+INSERT INTO `mechanicexpenses` (`id`, `date`, `vehicletype`, `vehicleno`, `description`, `mechaniclobor`, `electriclabor`, `bodywork`, `oilchange`, `total`) VALUES
+(1, '23/12/2019 14:30', 'Car', 'TN10AZ1877', 'Test1', 10, 10, 10, 5, 35),
+(3, '23/12/2019 14:32', 'Car', 'TN10AZ1877', 'new', 89, 89, 89, 98, 365);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `miscexpenses`
+--
+
+CREATE TABLE `miscexpenses` (
+  `id` bigint(20) NOT NULL,
+  `date` text NOT NULL,
+  `vehicletype` varchar(100) NOT NULL,
+  `vehicleno` varchar(100) NOT NULL,
+  `pc` float NOT NULL,
+  `rdo` float NOT NULL,
+  `rto` float NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `miscexpenses`
+--
+
+INSERT INTO `miscexpenses` (`id`, `date`, `vehicletype`, `vehicleno`, `pc`, `rdo`, `rto`, `total`) VALUES
+(2, '23/12/2019 15:10', 'Truck', 'TN08BL1234', 20, 20, 20, 60);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `party`
 --
 
@@ -75,6 +158,31 @@ CREATE TABLE `party` (
 
 INSERT INTO `party` (`partyid`, `partytype`, `partyname`, `mobile`, `telephone`, `address`, `email`, `pancard`, `gstin`, `createdby`, `createdon`, `updatedby`, `updatedon`) VALUES
 (1, 'testtyp', 'ji', 984044013, 12, 'testaddres', 'testemnai', 'bnv56', 'hyuy67', 'Admin', '2019-12-20 00:00:00', 'Admin', '2019-12-20 00:11:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rtoexpenses`
+--
+
+CREATE TABLE `rtoexpenses` (
+  `id` bigint(20) NOT NULL,
+  `date` text NOT NULL,
+  `vehicletype` varchar(100) NOT NULL,
+  `vehicleno` varchar(100) NOT NULL,
+  `tax` float NOT NULL,
+  `insurance` float NOT NULL,
+  `fc` float NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rtoexpenses`
+--
+
+INSERT INTO `rtoexpenses` (`id`, `date`, `vehicletype`, `vehicleno`, `tax`, `insurance`, `fc`, `total`) VALUES
+(1, '23/12/2019 12:28', 'Truck', 'TN05AL3362', 100, 100, 100, 300),
+(2, '23/12/2019 12:29', 'Car', 'TN10AZ1877', 10, 10, 10, 30);
 
 -- --------------------------------------------------------
 
@@ -121,13 +229,19 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`veicleid`, `vehicletype`, `vehicleno`, `createdby`, `createdon`, `updatedby`, `updatedon`) VALUES
-(1, 'Truck', 'tn05az1877', 'Admin', '2019-12-19 00:00:00', 'Admin', '2019-12-19 23:21:52'),
-(3, 'Car', 'Test123', 'Admin', '2019-12-19 23:22:01', 'Admin', '2019-12-19 23:22:01'),
-(4, 'Truck', 'test456', 'Admin', '2019-12-19 23:22:16', 'Admin', '2019-12-19 23:22:16');
+(5, 'Truck', 'TN05AL3362', 'Admin', '2019-12-21 00:00:00', 'Admin', '2019-12-21 00:00:00'),
+(6, 'Car', 'TN10AZ1877', 'Admin', '2019-12-21 00:00:00', 'Admin', '2019-12-21 00:00:00'),
+(7, 'Truck', 'TN08BL1234', 'Admin', '2019-12-21 00:00:00', 'Admin', '2019-12-21 00:00:00');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `dailyexpenses`
+--
+ALTER TABLE `dailyexpenses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `driver`
@@ -136,10 +250,28 @@ ALTER TABLE `driver`
   ADD PRIMARY KEY (`driverid`);
 
 --
+-- Indexes for table `mechanicexpenses`
+--
+ALTER TABLE `mechanicexpenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `miscexpenses`
+--
+ALTER TABLE `miscexpenses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `party`
 --
 ALTER TABLE `party`
   ADD PRIMARY KEY (`partyid`);
+
+--
+-- Indexes for table `rtoexpenses`
+--
+ALTER TABLE `rtoexpenses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `test`
@@ -158,16 +290,40 @@ ALTER TABLE `vehicle`
 --
 
 --
+-- AUTO_INCREMENT for table `dailyexpenses`
+--
+ALTER TABLE `dailyexpenses`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
   MODIFY `driverid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `mechanicexpenses`
+--
+ALTER TABLE `mechanicexpenses`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `miscexpenses`
+--
+ALTER TABLE `miscexpenses`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
   MODIFY `partyid` bigint(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `rtoexpenses`
+--
+ALTER TABLE `rtoexpenses`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -179,7 +335,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `veicleid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `veicleid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

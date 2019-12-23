@@ -103,7 +103,7 @@ namespace SMSTransport.DAL
         }
         public List<SelectResponse> ReadVehcilesOnType(string vehicleType)
         {
-            return entities.Vehicle.Where(item=>item.Vehicletype.Equals(vehicleType)).Select(x => new SelectResponse
+            return entities.Vehicle.Where(item => item.Vehicletype.Equals(vehicleType)).Select(x => new SelectResponse
             {
                 Text = x.Vehicleno,
                 Value = x.Vehicleno
