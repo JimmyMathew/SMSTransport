@@ -144,5 +144,35 @@ namespace SMSTransport.Controllers
             return Json(resultList);
         }
         #endregion
+
+        #region TireExpenses
+        [HttpGet("[action]")]
+        public JsonResult ReadTire()
+        {
+            List<object> resultList = new List<object>();
+            resultList.Add(expDal.ReadTire());
+            resultList.Add(masterDal.ReadVehicleTypes());
+            return Json(resultList);
+        }
+        [HttpPost("[action]")]
+        public JsonResult SaveTire([FromBody] JObject data)
+        {
+            List<object> resultList = new List<object>();
+            TireVM tireObj = data.ToObject<TireVM>();
+            resultList.Add(tireObj.Id == 0 ? expDal.SaveTire(tireObj) : expDal.UpdateTire(tireObj));
+            resultList.Add(ReadTire());
+            return Json(resultList);
+
+        }
+        [HttpPost("[action]")]
+        public JsonResult DeleteTire([FromBody] JObject data)
+        {
+            List<object> resultList = new List<object>();
+            TireVM tireObj = data.ToObject<TireVM>();
+            resultList.Add(expDal.DeleteTire(tireObj.Id));
+            resultList.Add(ReadTire());
+            return Json(resultList);
+        }
+        #endregion
     }
 }

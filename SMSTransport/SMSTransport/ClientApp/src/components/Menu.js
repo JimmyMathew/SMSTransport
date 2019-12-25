@@ -38,6 +38,9 @@ export class Menu extends Component {
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/rto">RTO Expenses</a></li>
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/mechanic">Mechanic Expenses</a></li>
                                     <li><i className="fa fa-puzzle-piece"></i><a href="/misc">Miscellaneous Expenses</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/tire">Tire Expenses</a></li>
+                                    <li><i className="fa fa-puzzle-piece"></i><a href="/sale">Sales</a></li>
+
                                 </ul>
                             </li>
 

@@ -331,5 +331,94 @@ namespace SMSTransport.DAL
         }
         #endregion
 
+        #region TireExpenses
+        public List<TireVM> ReadTire()
+        {
+            return entities.Tiredetails.Select(x => new TireVM
+            {
+                Id = x.Id,
+                Date = x.Date,
+                Vehicletype = x.Vehicletype,
+                Vehicleno = x.Vehicleno,
+                Tyretype = x.Type,
+                Side = x.Side,
+                Company = x.Company,
+                Startkm = x.Startkm,
+                Closekm = x.Closekm,
+                Starthour = x.Starthour,
+                Closehour = x.Closehour,
+                Total = x.Total
+            }).OrderByDescending(x => x.Id).ToList();
+        }
+        public Response SaveTire(TireVM obj)
+        {
+            if (obj != null)
+            {
+                Tiredetails tireObj = new Tiredetails();
+                tireObj.Date = obj.Date;
+                tireObj.Vehicletype = obj.Vehicletype;
+                tireObj.Vehicleno = obj.Vehicleno;
+                tireObj.Type = obj.Tyretype;
+                tireObj.Side = obj.Side;
+                tireObj.Company = obj.Company;
+                tireObj.Startkm = obj.Startkm;
+                tireObj.Closekm = obj.Closekm;
+                tireObj.Starthour = obj.Starthour;
+                tireObj.Closehour = obj.Closehour;
+                tireObj.Total = obj.Total;
+                entities.Tiredetails.Add(tireObj);
+                entities.SaveChanges();
+                return new Response { IsSuccess = true, Message = "Tire expenses successfully added." };
+            }
+            else
+                return new Response { IsSuccess = false, Message = "Insertion Error.Contact Administrator." };
+        }
+        public Response UpdateTire(TireVM obj)
+        {
+            var IsExist = entities.Tiredetails.Where(x => x.Id == obj.Id).ToList();
+            if (IsExist.Count != 0)
+            {
+                var tireObj = entities.Tiredetails.Where(x => x.Id == obj.Id).FirstOrDefault();
+                tireObj.Date = obj.Date;
+                tireObj.Vehicletype = obj.Vehicletype;
+                tireObj.Vehicleno = obj.Vehicleno;
+                tireObj.Type = obj.Tyretype;
+                tireObj.Side = obj.Side;
+                tireObj.Company = obj.Company;
+                tireObj.Startkm = obj.Startkm;
+                tireObj.Closekm = obj.Closekm;
+                tireObj.Starthour = obj.Starthour;
+                tireObj.Closehour = obj.Closehour;
+                tireObj.Total = obj.Total;
+                entities.SaveChanges();
+                return new Response { IsSuccess = true, Message = "Tire expenses successfully updated" };
+            }
+            else
+                return new Response { IsSuccess = false, Message = "Updation Error. Contact Administrator" };
+        }
+        public Response DeleteTire(long id)
+        {
+            var tireObj = entities.Tiredetails.Where(x => x.Id == id).FirstOrDefault();
+            if (tireObj != null)
+            {
+
+                entities.Tiredetails.Remove(tireObj);
+                try
+                {
+                    entities.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return new Response { IsSuccess = false, Message = "Deletion Error: " + e.Message };
+
+                }
+                return new Response { IsSuccess = true, Message = "Tire expenses deleted successfully" };
+            }
+            else
+                return new Response { IsSuccess = false, Message = "Deletion error. Contact Administrator" };
+        }
+        #endregion
+
+
     }
 }

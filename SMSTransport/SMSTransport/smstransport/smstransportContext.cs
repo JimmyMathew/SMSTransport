@@ -21,7 +21,9 @@ namespace SMSTransport.smstransport
         public virtual DbSet<Miscexpenses> Miscexpenses { get; set; }
         public virtual DbSet<Party> Party { get; set; }
         public virtual DbSet<Rtoexpenses> Rtoexpenses { get; set; }
+        public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<Test> Test { get; set; }
+        public virtual DbSet<Tiredetails> Tiredetails { get; set; }
         public virtual DbSet<Vehicle> Vehicle { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -324,6 +326,86 @@ namespace SMSTransport.smstransport
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Sales>(entity =>
+            {
+                entity.ToTable("sales", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Closingkm).HasColumnName("closingkm");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Driver)
+                    .IsRequired()
+                    .HasColumnName("driver")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Expensekm).HasColumnName("expensekm");
+
+                entity.Property(e => e.Loadfrom)
+                    .IsRequired()
+                    .HasColumnName("loadfrom")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Loadto)
+                    .IsRequired()
+                    .HasColumnName("loadto")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mode)
+                    .IsRequired()
+                    .HasColumnName("mode")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Party)
+                    .IsRequired()
+                    .HasColumnName("party")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rate).HasColumnName("rate");
+
+                entity.Property(e => e.Ratetype)
+                    .IsRequired()
+                    .HasColumnName("ratetype")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rentdetail)
+                    .IsRequired()
+                    .HasColumnName("rentdetail")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Startingkm).HasColumnName("startingkm");
+
+                entity.Property(e => e.Ton).HasColumnName("ton");
+
+                entity.Property(e => e.Total).HasColumnName("total");
+
+                entity.Property(e => e.Vehicleno)
+                    .IsRequired()
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicletype)
+                    .IsRequired()
+                    .HasColumnName("vehicletype")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Test>(entity =>
             {
                 entity.ToTable("test", "smstransport");
@@ -343,6 +425,60 @@ namespace SMSTransport.smstransport
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Tiredetails>(entity =>
+            {
+                entity.ToTable("tiredetails", "smstransport");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Closehour).HasColumnName("closehour");
+
+                entity.Property(e => e.Closekm).HasColumnName("closekm");
+
+                entity.Property(e => e.Company)
+                    .IsRequired()
+                    .HasColumnName("company")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Side)
+                    .IsRequired()
+                    .HasColumnName("side")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Starthour).HasColumnName("starthour");
+
+                entity.Property(e => e.Startkm).HasColumnName("startkm");
+
+                entity.Property(e => e.Total).HasColumnName("total");
+
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasColumnName("type")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicleno)
+                    .IsRequired()
+                    .HasColumnName("vehicleno")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vehicletype)
+                    .IsRequired()
+                    .HasColumnName("vehicletype")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });

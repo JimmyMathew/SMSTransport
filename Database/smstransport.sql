@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 11:05 AM
+-- Generation Time: Dec 25, 2019 at 09:56 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -187,6 +187,32 @@ INSERT INTO `rtoexpenses` (`id`, `date`, `vehicletype`, `vehicleno`, `tax`, `ins
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` bigint(20) NOT NULL,
+  `date` text NOT NULL,
+  `vehicletype` varchar(100) NOT NULL,
+  `vehicleno` varchar(100) NOT NULL,
+  `driver` varchar(100) NOT NULL,
+  `mode` varchar(100) NOT NULL,
+  `party` varchar(100) NOT NULL,
+  `rentdetail` varchar(100) NOT NULL,
+  `loadfrom` varchar(100) NOT NULL,
+  `loadto` varchar(100) NOT NULL,
+  `ratetype` varchar(100) NOT NULL,
+  `rate` float NOT NULL,
+  `ton` float NOT NULL,
+  `startingkm` float NOT NULL,
+  `closingkm` float NOT NULL,
+  `expensekm` float NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `test`
 --
 
@@ -207,6 +233,34 @@ INSERT INTO `test` (`id`, `name`, `age`, `isactive`) VALUES
 (15, 'Molly Mathew', 57, 1),
 (16, 'Joji', 22, 1),
 (17, 'Test', 21, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tiredetails`
+--
+
+CREATE TABLE `tiredetails` (
+  `id` bigint(20) NOT NULL,
+  `date` text NOT NULL,
+  `vehicletype` varchar(100) NOT NULL,
+  `vehicleno` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `side` varchar(100) NOT NULL,
+  `company` varchar(100) NOT NULL,
+  `startkm` float NOT NULL,
+  `closekm` float NOT NULL,
+  `starthour` float NOT NULL,
+  `closehour` float NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tiredetails`
+--
+
+INSERT INTO `tiredetails` (`id`, `date`, `vehicletype`, `vehicleno`, `type`, `side`, `company`, `startkm`, `closekm`, `starthour`, `closehour`, `total`) VALUES
+(1, '24/12/2019 13:16', 'Car', 'TN10AZ1877', 'Original', 'Front', 'testCopany', 1, 2, 3, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -274,9 +328,21 @@ ALTER TABLE `rtoexpenses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `test`
 --
 ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tiredetails`
+--
+ALTER TABLE `tiredetails`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -326,10 +392,22 @@ ALTER TABLE `rtoexpenses`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tiredetails`
+--
+ALTER TABLE `tiredetails`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vehicle`

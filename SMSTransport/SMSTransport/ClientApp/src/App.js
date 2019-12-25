@@ -11,6 +11,8 @@ import { Daily } from './components/Daily';
 import { Rto } from './components/Rto';
 import { Mechanic } from './components/Mechanic';
 import { Misc } from './components/Misc';
+import { Tire } from './components/Tire';
+import { Sale } from './components/Sale';
 
 
 export default class App extends Component {
@@ -29,6 +31,8 @@ export default class App extends Component {
                     <Route path='/rto' component={Rto} />
                     <Route path='/mechanic' component={Mechanic} />
                     <Route path='/misc' component={Misc} />
+                    <Route path='/tire' component={Tire} />
+                    <Route path='/sale' component={Sale} />
                 </Switch>
 
             </React.Fragment>
