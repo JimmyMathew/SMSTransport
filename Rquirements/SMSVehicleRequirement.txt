@@ -1,19 +1,18 @@
 Vehicle details Entry
-Sno
-Date
-Vehicle Type
-Vehicle No
-Driver 
+Sno Auto 
+Date - Auto 
+Vehicle Type - Drop
+Vehicle No - Select/Textbox
+Driver - Select/Text
 Mode -  Sales/Purchase  
-Party name 
-Load from 
-Load to 
-Starting KM 
-Closing KM 
-Expense KM(Closing - Starting )
-
-Rent details - Cash/Credit 
-	Total - ()  
+Party name - Select/Text
+Load from - Text
+Load to -Text
+Starting KM - Text
+Closing KM -Text
+Expense KM(Closing - Starting )- Automatic 
+Rent details - Cash/Credit - Select 
+Total - ()  
 
 
 
